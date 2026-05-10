@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Entnahmeplan-Rechner</title>
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+<!-- PIN-Gate -->
+<div id="pin-gate" class="pin-gate hidden">
+    <div class="pin-box">
+        <h1>Entnahmeplan</h1>
+        <p>PIN eingeben</p>
+        <input id="pin-input" type="password" inputmode="numeric" maxlength="6" autocomplete="off" />
+        <button id="pin-submit">Entsperren</button>
+        <div id="pin-error" class="error"></div>
+    </div>
+</div>
+
+<!-- App -->
+<div id="app" class="hidden">
+
+    <header>
+        <div class="header-left">
+            <h1>Entnahmeplan</h1>
+            <select id="scenario-select" title="Szenario auswählen"></select>
+            <input id="scenario-name" type="text" placeholder="Szenario-Name" />
+        </div>
+        <div class="header-right">
+            <button id="btn-new">+ Neu</button>
+            <button id="btn-duplicate">Duplizieren</button>
+            <button id="btn-delete" class="danger">Löschen</button>
+            <button id="btn-compare">Vergleichen</button>
+            <span id="save-indicator" class="save-indicator"></span>
+        </div>
+    </header>
+
+    <main class="layout">
+
+        <!-- LEFT: Inputs -->
+        <section class="panel inputs-panel">
+            <div id="input-sections"></div>
+            <div class="actions">
+                <button id="btn-save" class="primary">Speichern</button>
+                <button id="btn-reset">Zurücksetzen</button>
+            </div>
+        </section>
+
+        <!-- RIGHT: Results -->
+        <section class="panel results-panel">
+
+            <div class="cards" id="cards"></div>
+
+            <h2>Cashflow 2026 – 2055</h2>
+            <div class="table-wrap">
+                <table id="cashflow-table">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <h2>Erbmasse 2055</h2>
+            <div id="erbmasse-block"></div>
+
+            <div class="actions">
+                <button id="btn-export">Excel-Download</button>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <details>
+            <summary>Rechtsgrundlagen</summary>
+            <pre>KEINE STEUERBERATUNG. Basiert auf öffentlich zugänglicher Rechtslage Österreich 2026.
+
+• KöSt 23%: §22 KStG
+• KESt 27,5%: §93 EStG
+• KV Pensionisten 6%: ab 1.1.2026
+• ESt-Tarifstufen 2026: BMF, valorisiert +1,733%
+• Pensionistenabsetzbetrag 1.020 €, einschleifend 21.614–31.494 €
+• Sonderzahlung §67 Abs 1 EStG, Freibetrag 620 €, darüber 6%
+• Gold steuerfrei privat: §31 EStG (1 Jahr Haltedauer)
+• Schachtelprivileg §10 Abs 2 KStG (≥10%, ≥1 Jahr)
+• CFC-Rule §10a KStG
+• GrESt Stufentarif §7 Abs 1 Z 2 GrEStG
+• CH AHV: Art. 21 DBA CH-AT, ausschließlich AT-steuerpflichtig
+• Miete Whg2: progressiv ~40%, AfA 1,5% auf 60% Gebäudeanteil
+• Keine Erbschaftsteuer in AT seit 2008
+
+Umsetzung zwingend mit Steuerberater + Notar abstimmen VOR jeder Transaktion.</pre>
+        </details>
+        <button id="btn-logout">Abmelden</button>
+    </footer>
+</div>
+
+<!-- Compare Modal -->
+<div id="compare-modal" class="modal hidden">
+    <div class="modal-content">
+        <h2>Szenarien vergleichen</h2>
+        <div id="compare-list"></div>
+        <div class="modal-actions">
+            <button id="compare-run" class="primary">Vergleichen</button>
+            <button id="compare-close">Schließen</button>
+        </div>
+        <div id="compare-result"></div>
+    </div>
+</div>
+
+<script src="/calc-client.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>
