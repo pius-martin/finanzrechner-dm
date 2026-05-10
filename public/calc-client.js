@@ -13,10 +13,21 @@
 
     function num(v, def) {
         if (v === null || v === undefined || v === '') return def;
-        if (typeof v === 'number') return v;
-        if (typeof v === 'string') return parseFloat(v);
-        if (typeof v.toNumber === 'function') return v.toNumber();
-        if (typeof v.toString === 'function') return parseFloat(v.toString());
+        if (typeof v === 'number') return Number.isFinite(v) ? v : def;
+        if (typeof v === 'string') {
+            const n = parseFloat(v);
+            return Number.isFinite(n) ? n : def;
+        }
+        if (typeof v.toNumber === 'function') {
+            try {
+                const n = v.toNumber();
+                return Number.isFinite(n) ? n : def;
+            } catch (_) { /* fallthrough */ }
+        }
+        if (typeof v.toString === 'function') {
+            const n = parseFloat(v.toString());
+            return Number.isFinite(n) ? n : def;
+        }
         return def;
     }
 

@@ -203,11 +203,22 @@ button.danger:hover { color: var(--red); border-color: var(--red); background: v
     border-bottom: 1px solid var(--bg-subtle);
 }
 .input-row:last-child { border-bottom: none; }
+.input-label { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .input-row label {
     font-size: 13px;
     color: var(--text);
+    line-height: 1.3;
 }
-.input-row .help { color: var(--text-subtle); font-size: 11px; }
+.input-row .help { color: var(--text-subtle); font-size: 11px; line-height: 1.3; }
+.section-note {
+    margin: -4px 0 12px 0;
+    padding: 8px 10px;
+    background: var(--bg-subtle);
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
 
 input[type="number"] {
     background: transparent;

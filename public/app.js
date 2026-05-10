@@ -15,85 +15,85 @@
         {
             title: 'Pension & Einkommen',
             fields: [
-                { key: 'at_pension_brutto_mt',  label: 'AT Pension brutto/Mt',     step: 50 },
-                { key: 'ch_ahv_brutto_mt',      label: 'CH AHV brutto/Mt',         step: 50 },
-                { key: 'pension_y_netto_mt',    label: 'Pension Y netto/Mt',       step: 50 },
-                { key: 'miete_whg2_brutto_mt',  label: 'Miete Whg2 brutto/Mt',     step: 50 },
-                { key: 'miete_whg2_startjahr',  label: 'Miete Whg2 Startjahr',     step: 1 },
-                { key: 'miete_whg2_wert',       label: 'Whg2 Wert (für AfA)',      step: 10000 },
+                { key: 'at_pension_brutto_mt',  label: 'Pension Österreich (Mann) brutto / Monat',  step: 50,    hint: 'ASVG, 14× ausbezahlt' },
+                { key: 'ch_ahv_brutto_mt',      label: 'Schweiz AHV brutto / Monat',                step: 50,    hint: '12× ausbezahlt' },
+                { key: 'pension_y_netto_mt',    label: 'Pension Partnerin netto / Monat',           step: 50 },
+                { key: 'miete_whg2_brutto_mt',  label: 'Miete Wohnung 2 brutto / Monat',            step: 50 },
+                { key: 'miete_whg2_startjahr',  label: 'Mietbeginn Wohnung 2 (Jahr)',               step: 1 },
+                { key: 'miete_whg2_wert',       label: 'Verkehrswert Wohnung 2 (für AfA)',          step: 10000, hint: 'AfA 1,5% auf 60% Gebäudeanteil' },
             ],
         },
         {
             title: 'Haushalt & Bedarf',
             fields: [
-                { key: 'haushalt_bis_80', label: 'Haushalt bis 80 €/Mt', step: 100 },
-                { key: 'haushalt_ab_80',  label: 'Haushalt ab 80 €/Mt',  step: 100 },
-                { key: 'instandhaltung_pa', label: 'Instandhaltung €/J', step: 500 },
+                { key: 'haushalt_bis_80',   label: 'Haushaltsgeld bis Alter 80 (€/Monat)',  step: 100, hint: 'PUR — ohne Kredit/Reno' },
+                { key: 'haushalt_ab_80',    label: 'Haushaltsgeld ab Alter 81 (€/Monat)',   step: 100, hint: 'PUR' },
+                { key: 'instandhaltung_pa', label: 'Hausrücklage Privathaus (€/Jahr)',      step: 500 },
             ],
         },
         {
             title: 'Holding & Depot',
             fields: [
-                { key: 'depot_start',         label: 'Depot Start',           step: 10000 },
-                { key: 'gold_start',          label: 'Gold Start',            step: 10000 },
-                { key: 'pt_lda_95_wert',      label: 'PT LDA 95% Wert',       step: 10000 },
-                { key: 'pt_miete_brutto_pa',  label: 'PT Miete brutto/J',     step: 500 },
-                { key: 'holding_fix_j1',      label: 'Holding-Kosten J1',     step: 500 },
-                { key: 'holding_fix_jx',      label: 'Holding-Kosten ab J2',  step: 500 },
+                { key: 'depot_start',        label: 'Wertpapier-Depot Holding (Start)',          step: 10000 },
+                { key: 'gold_start',         label: 'Physisches Gold Holding (Start)',           step: 10000 },
+                { key: 'pt_lda_95_wert',     label: 'Portugal LDA 95%-Anteil (Wert)',            step: 10000 },
+                { key: 'pt_miete_brutto_pa', label: 'Portugal Mieteinnahmen brutto / Jahr',      step: 500, hint: 'Schachtelprivileg, AT-steuerfrei' },
+                { key: 'holding_fix_j1',    label: 'Holding-Fixkosten Jahr 1 (Übergang)',        step: 500 },
+                { key: 'holding_fix_jx',    label: 'Holding-Fixkosten ab Jahr 2',                step: 500 },
             ],
         },
         {
-            title: 'Darlehen X → Holding',
+            title: 'Darlehen Privat → Holding',
             fields: [
-                { key: 'darlehen_betrag',    label: 'Darlehen Betrag', step: 10000 },
-                { key: 'darlehen_jahre',     label: 'Tilgungsdauer (J)', step: 1 },
-                { key: 'darlehen_zins_real', label: 'Zinssatz real',     step: 0.0005 },
+                { key: 'darlehen_betrag',    label: 'Darlehensbetrag',                   step: 10000 },
+                { key: 'darlehen_jahre',     label: 'Tilgungsdauer (Jahre)',             step: 1 },
+                { key: 'darlehen_zins_real', label: 'Realzins (z.B. 0,005 = 0,5%)',      step: 0.0005, hint: 'fremdüblich, real' },
             ],
         },
         {
-            title: 'Bankkredit (Hypothek)',
+            title: 'Bankkredit (Hypothek Privathaus)',
             fields: [
-                { key: 'kredit_betrag',    label: 'Kreditbetrag',  step: 10000 },
-                { key: 'kredit_laufzeit',  label: 'Laufzeit (J)',  step: 1 },
-                { key: 'kredit_realzins',  label: 'Realzins',      step: 0.0005 },
+                { key: 'kredit_betrag',    label: 'Kreditbetrag',                    step: 10000 },
+                { key: 'kredit_laufzeit',  label: 'Laufzeit (Jahre)',                step: 1 },
+                { key: 'kredit_realzins',  label: 'Realzins (z.B. 0,015 = 1,5%)',    step: 0.0005, hint: '~3,5% nominal' },
             ],
         },
         {
             title: 'Renovierung & Einmalinvestitionen',
             fields: [
-                { key: 'reno_whg2_2026',      label: 'Reno Whg2 (2026)',          step: 5000 },
-                { key: 'reno_whg1_2027_2029', label: 'Reno Whg1 (2027-2029)',     step: 25000 },
-                { key: 'auto_privat',         label: 'Auto privat (2026)',        step: 5000 },
-                { key: 'ram_rueckkauf',       label: 'RAM Rückkauf (2026)',       step: 5000 },
-                { key: 'pt_zuschuss',         label: 'PT Zuschuss (2026)',        step: 10000 },
+                { key: 'reno_whg2_2026',      label: 'Renovierung Wohnung 2 (2026)',          step: 5000 },
+                { key: 'reno_whg1_2027_2029', label: 'Renovierung Wohnung 1 (2027-2029)',     step: 25000, hint: '3 gleiche Tranchen' },
+                { key: 'auto_privat',         label: 'Auto privat einmalig (2026)',           step: 5000 },
+                { key: 'ram_rueckkauf',       label: 'Firmenwagen-Rückkauf (2026)',           step: 5000 },
+                { key: 'pt_zuschuss',         label: 'Kapitaleinlage Portugal LDA (2026)',    step: 10000 },
             ],
         },
         {
-            title: 'Vermögen Privat (für Erbmasse)',
+            title: 'Vermögen Privat (Erbmasse)',
             fields: [
-                { key: 'privathaus_wert',    label: 'Privathaus',     step: 25000 },
-                { key: 'schruns_wohnung_y',  label: 'Schruns Y',      step: 25000 },
-                { key: 'diverses',           label: 'Diverses',       step: 5000 },
-                { key: 'lwf_schruns',        label: 'LWF Schruns',    step: 1000 },
-                { key: 'priv_gold_2026',     label: 'Priv. Gold 2026',step: 5000 },
-                { key: 'priv_silber_2026',   label: 'Priv. Silber 2026',step: 1000 },
+                { key: 'privathaus_wert',    label: 'Privathaus (Verkehrswert)',           step: 25000 },
+                { key: 'schruns_wohnung_y',  label: 'Wohnung Schruns (Partnerin)',         step: 25000 },
+                { key: 'diverses',           label: 'Sonstiges Vermögen',                  step: 5000 },
+                { key: 'lwf_schruns',        label: 'Land-/Forstwirtschaft Schruns',       step: 1000 },
+                { key: 'priv_gold_2026',     label: 'Privates Gold (2026 verkauft)',       step: 5000, hint: 'steuerfrei §31 EStG' },
+                { key: 'priv_silber_2026',   label: 'Privates Silber (2026 verkauft)',     step: 1000 },
             ],
         },
         {
-            title: 'Steuer-Parameter',
-            collapsed: true,
+            title: 'Steuer-Parameter (staatlich fix)',
+            note: 'Gesetzliche Werte für Österreich/Portugal 2026 — nur ändern, wenn sich die Rechtslage ändert.',
             fields: [
-                { key: 'koest',              label: 'KöSt',              step: 0.005 },
-                { key: 'kest',               label: 'KESt',              step: 0.005 },
-                { key: 'kv_pensionisten',    label: 'KV Pensionisten',   step: 0.005 },
-                { key: 'pt_irc',             label: 'PT IRC',            step: 0.005 },
-                { key: 'depot_rendite_real', label: 'Depot Rendite real',step: 0.005 },
-                { key: 'sonder_freibetrag',  label: 'Sonder-Freibetrag', step: 10 },
-                { key: 'sonder_steuersatz',  label: 'Sonder-Steuersatz', step: 0.005 },
-                { key: 'gold_bilanz_faktor', label: 'Gold Bilanz-Faktor',step: 0.005 },
-                { key: 'pab_max',            label: 'Pens.-Absetzbetrag',step: 10 },
-                { key: 'pab_unten',          label: 'PAB unten',         step: 100 },
-                { key: 'pab_oben',           label: 'PAB oben',          step: 100 },
+                { key: 'koest',              label: 'Körperschaftsteuer (KöSt)',              step: 0.005, hint: '23% — §22 KStG' },
+                { key: 'kest',               label: 'Kapitalertragsteuer (KESt)',             step: 0.005, hint: '27,5% — §93 EStG' },
+                { key: 'kv_pensionisten',    label: 'Krankenversicherung Pensionisten',       step: 0.005, hint: '6% ab 1.1.2026' },
+                { key: 'pt_irc',             label: 'Portugal Körperschaftsteuer (IRC)',      step: 0.005, hint: '21%' },
+                { key: 'depot_rendite_real', label: 'Depot-Rendite real (nach Inflation)',    step: 0.005, hint: 'Annahme — kein Gesetz' },
+                { key: 'sonder_freibetrag',  label: 'Sonderzahlung Freibetrag (€)',           step: 10,    hint: '§67 Abs 1 EStG' },
+                { key: 'sonder_steuersatz',  label: 'Sonderzahlung Steuersatz',               step: 0.005, hint: '6%' },
+                { key: 'gold_bilanz_faktor', label: 'Gold Bilanzabbau-Faktor',                step: 0.005, hint: '~77% des Bruttobetrags' },
+                { key: 'pab_max',            label: 'Pensionistenabsetzbetrag max (€)',       step: 10,    hint: '1.020 €' },
+                { key: 'pab_unten',          label: 'PAB Einschleifgrenze unten (€)',         step: 100 },
+                { key: 'pab_oben',           label: 'PAB Einschleifgrenze oben (€)',          step: 100 },
             ],
         },
     ];
@@ -171,19 +171,34 @@
             const h3 = document.createElement('h3');
             h3.textContent = sec.title;
             wrap.appendChild(h3);
+            if (sec.note) {
+                const note = document.createElement('p');
+                note.className = 'section-note';
+                note.textContent = sec.note;
+                wrap.appendChild(note);
+            }
             for (const f of sec.fields) {
                 const row = document.createElement('div');
                 row.className = 'input-row';
+                const labelWrap = document.createElement('div');
+                labelWrap.className = 'input-label';
                 const label = document.createElement('label');
                 label.textContent = f.label;
                 label.htmlFor = `inp-${f.key}`;
+                labelWrap.appendChild(label);
+                if (f.hint) {
+                    const hint = document.createElement('span');
+                    hint.className = 'help';
+                    hint.textContent = f.hint;
+                    labelWrap.appendChild(hint);
+                }
                 const input = document.createElement('input');
                 input.type = 'number';
                 input.id = `inp-${f.key}`;
                 input.step = f.step;
                 input.dataset.key = f.key;
                 input.addEventListener('input', onInputChange);
-                row.appendChild(label);
+                row.appendChild(labelWrap);
                 row.appendChild(input);
                 wrap.appendChild(row);
             }
