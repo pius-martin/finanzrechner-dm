@@ -10,7 +10,8 @@
     "migrate": "prisma migrate deploy",
     "generate": "prisma generate",
     "postinstall": "prisma generate || true",
-    "build": "prisma generate && prisma migrate deploy"
+    "build": "prisma generate && prisma migrate deploy",
+    "seed": "node scripts/seed-szenarien.js"
   },
   "engines": {
     "node": ">=20"
