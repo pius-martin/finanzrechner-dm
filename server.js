@@ -32,8 +32,23 @@ app.use((err, req, res, _next) => {
     res.status(500).json({ error: 'internal_error', message: err && err.message });
 });
 
+async function maybeSeed() {
+    if (process.env.SKIP_SEED === '1') return;
+    try {
+        const prisma = require('./lib/db');
+        const count = await prisma.scenario.count();
+        if (count === 0) {
+            console.log('[seed] DB leer -> Briefing-Szenarien werden angelegt');
+            await require('./scripts/seed-szenarien-fn')();
+        }
+    } catch (e) {
+        console.error('[seed] fehlgeschlagen (Server startet trotzdem):', e.message);
+    }
+}
+
 const PORT = parseInt(process.env.PORT, 10) || 3000;
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     // eslint-disable-next-line no-console
     console.log(`Entnahmeplan-Rechner läuft auf Port ${PORT}`);
+    await maybeSeed();
 });
