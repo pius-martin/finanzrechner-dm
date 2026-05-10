@@ -1,0 +1,27 @@
+{
+  "name": "finanzrechner-dm",
+  "version": "1.0.0",
+  "description": "Entnahmeplan-Rechner v2 — 30-Jahres-Cashflow für AT-Pensionisten mit GmbH-Holding",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node lib/calc.test.js",
+    "migrate": "prisma migrate deploy",
+    "generate": "prisma generate",
+    "postinstall": "prisma generate || true",
+    "build": "prisma generate && prisma migrate deploy"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "cookie-parser": "^1.4.7",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "prisma": "^5.22.0"
+  }
+}

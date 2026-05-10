@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Scenario {
+  id          String          @id @default(uuid()) @db.Uuid
+  name        String          @default("Neues Szenario") @db.VarChar(255)
+  description String?
+  isDefault   Boolean         @default(false) @map("is_default")
+  createdAt   DateTime        @default(now()) @map("created_at")
+  updatedAt   DateTime        @default(now()) @updatedAt @map("updated_at")
+  archived    Boolean         @default(false)
+
+  inputs      ScenarioInputs?
+  results     ScenarioResults?
+
+  @@map("scenarios")
+}
+
+model ScenarioInputs {
+  id         String @id @default(uuid()) @db.Uuid
+  scenarioId String @unique @map("scenario_id") @db.Uuid
+
+  atPensionBruttoMt   Decimal @default(3500)    @map("at_pension_brutto_mt")   @db.Decimal(10, 2)
+  chAhvBruttoMt       Decimal @default(500)     @map("ch_ahv_brutto_mt")       @db.Decimal(10, 2)
+  pensionYNettoMt     Decimal @default(1000)    @map("pension_y_netto_mt")     @db.Decimal(10, 2)
+  mieteWhg2BruttoMt   Decimal @default(1200)    @map("miete_whg2_brutto_mt")   @db.Decimal(10, 2)
+  mieteWhg2Startjahr  Int     @default(2028)    @map("miete_whg2_startjahr")
+  mieteWhg2Wert       Decimal @default(300000)  @map("miete_whg2_wert")        @db.Decimal(12, 2)
+
+  haushaltBis80       Decimal @default(7000)    @map("haushalt_bis_80")        @db.Decimal(10, 2)
+  haushaltAb80        Decimal @default(5500)    @map("haushalt_ab_80")         @db.Decimal(10, 2)
+  instandhaltungPa    Decimal @default(6000)    @map("instandhaltung_pa")      @db.Decimal(10, 2)
+
+  depotStart          Decimal @default(1180000) @map("depot_start")            @db.Decimal(14, 2)
+  goldStart           Decimal @default(1374000) @map("gold_start")             @db.Decimal(14, 2)
+  ptLda95Wert         Decimal @default(570000)  @map("pt_lda_95_wert")         @db.Decimal(14, 2)
+  ptMieteBruttoPa     Decimal @default(18000)   @map("pt_miete_brutto_pa")     @db.Decimal(10, 2)
+  holdingFixJ1        Decimal @default(24900)   @map("holding_fix_j1")         @db.Decimal(10, 2)
+  holdingFixJx        Decimal @default(20400)   @map("holding_fix_jx")         @db.Decimal(10, 2)
+
+  darlehenBetrag      Decimal @default(200000)  @map("darlehen_betrag")        @db.Decimal(14, 2)
+  darlehenJahre       Int     @default(10)      @map("darlehen_jahre")
+  darlehenZinsReal    Decimal @default(0.005)   @map("darlehen_zins_real")     @db.Decimal(5, 4)
+
+  kreditBetrag        Decimal @default(300000)  @map("kredit_betrag")          @db.Decimal(14, 2)
+  kreditLaufzeit      Int     @default(15)      @map("kredit_laufzeit")
+  kreditRealzins      Decimal @default(0.015)   @map("kredit_realzins")        @db.Decimal(5, 4)
+
+  renoWhg22026        Decimal @default(100000)  @map("reno_whg2_2026")         @db.Decimal(12, 2)
+  renoWhg120272029    Decimal @default(450000)  @map("reno_whg1_2027_2029")    @db.Decimal(12, 2)
+  autoPrivat          Decimal @default(50000)   @map("auto_privat")            @db.Decimal(10, 2)
+  ramRueckkauf        Decimal @default(30000)   @map("ram_rueckkauf")          @db.Decimal(10, 2)
+  ptZuschuss          Decimal @default(150000)  @map("pt_zuschuss")            @db.Decimal(12, 2)
+
+  privathausWert      Decimal @default(1500000) @map("privathaus_wert")        @db.Decimal(14, 2)
+  schrunsWohnungY     Decimal @default(700000)  @map("schruns_wohnung_y")      @db.Decimal(14, 2)
+  diverses            Decimal @default(50000)                                  @db.Decimal(10, 2)
+  lwfSchruns          Decimal @default(15000)   @map("lwf_schruns")            @db.Decimal(10, 2)
+  privGold2026        Decimal @default(335000)  @map("priv_gold_2026")         @db.Decimal(12, 2)
+  privSilber2026      Decimal @default(4000)    @map("priv_silber_2026")       @db.Decimal(10, 2)
+
+  koest               Decimal @default(0.23)                                   @db.Decimal(5, 4)
+  kest                Decimal @default(0.275)                                  @db.Decimal(5, 4)
+  kvPensionisten      Decimal @default(0.06)    @map("kv_pensionisten")        @db.Decimal(5, 4)
+  ptIrc               Decimal @default(0.21)    @map("pt_irc")                 @db.Decimal(5, 4)
+  depotRenditeReal    Decimal @default(0.03)    @map("depot_rendite_real")     @db.Decimal(5, 4)
+  sonderFreibetrag    Decimal @default(620)     @map("sonder_freibetrag")      @db.Decimal(8, 2)
+  sonderSteuersatz    Decimal @default(0.06)    @map("sonder_steuersatz")      @db.Decimal(5, 4)
+  goldBilanzFaktor    Decimal @default(0.77)    @map("gold_bilanz_faktor")     @db.Decimal(5, 4)
+
+  estTarifstufen      Json    @map("est_tarifstufen")
+
+  pabMax              Decimal @default(1020)    @map("pab_max")                @db.Decimal(8, 2)
+  pabUnten            Decimal @default(21614)   @map("pab_unten")              @db.Decimal(10, 2)
+  pabOben             Decimal @default(31494)   @map("pab_oben")               @db.Decimal(10, 2)
+
+  grestStufen         Json    @map("grest_stufen")
+
+  scenario   Scenario @relation(fields: [scenarioId], references: [id], onDelete: Cascade)
+
+  @@map("scenario_inputs")
+}
+
+model ScenarioResults {
+  id              String   @id @default(uuid()) @db.Uuid
+  scenarioId      String   @unique @map("scenario_id") @db.Uuid
+
+  pensionNettoMt  Decimal? @map("pension_netto_mt")  @db.Decimal(10, 2)
+  mieteNettoMt    Decimal? @map("miete_netto_mt")    @db.Decimal(10, 2)
+  goldRateOptimal Decimal? @map("gold_rate_optimal") @db.Decimal(10, 2)
+  goldEnde2055    Decimal? @map("gold_ende_2055")    @db.Decimal(14, 2)
+  goldErhaltPct   Decimal? @map("gold_erhalt_pct")   @db.Decimal(5, 2)
+  depotEnde2055   Decimal? @map("depot_ende_2055")   @db.Decimal(14, 2)
+  erbmasseBrutto  Decimal? @map("erbmasse_brutto")   @db.Decimal(14, 2)
+  erbmasseNetto   Decimal? @map("erbmasse_netto")    @db.Decimal(14, 2)
+  grestGesamt     Decimal? @map("grest_gesamt")      @db.Decimal(10, 2)
+
+  cashflowJson    Json?    @map("cashflow_json")
+  calculatedAt    DateTime @default(now()) @map("calculated_at")
+
+  scenario   Scenario @relation(fields: [scenarioId], references: [id], onDelete: Cascade)
+
+  @@map("scenario_results")
+}
